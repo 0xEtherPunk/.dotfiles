@@ -45,13 +45,3 @@ stow lazygit neofetch nvim starship wezterm yazi zsh
 ```
 
 
-## 📂 Structure
-
-.
-├── lazygit/ # Git TUI configuration
-├── neofetch/ # System info display
-├── nvim/ # Neovim editor setup
-├── starship/ # Cross-shell prompt
-├── wezterm/ # Terminal emulator
-├── yazi/ # File manager themes
-└── zsh/ # Shell configuration
