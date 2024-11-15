@@ -1,0 +1,51 @@
+# ~/.config/yazi/yazi.toml
+
+[preview]
+tab_size = 2
+max_width = 600
+max_height = 900
+
+[preview.syntax]
+command = "highlight -O ansi"
+
+
+[manager]
+ratio = [1, 4, 3]
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+show_hidden = false
+show_symlink = true
+
+[opener]
+edit = [
+    { run = '$EDITOR "$@"' }
+]
+open = [
+    { run = 'xdg-open "$@"' }
+]
+reveal = [
+    { run = 'xdg-open "$( dirname "$1" )"' }
+]
+
+
+
+
+[open]
+rules = [
+    { name = "*/", use = "open" },
+    { mime = "text/*", use = "edit" },
+    { mime = "image/*", use = "open" },
+    { mime = "video/*", use = "open" },
+    { mime = "audio/*", use = "open" },
+    { mime = "application/pdf", use = "open" },
+    { mime = "application/json", use = "edit" },
+]
+
+[icons]
+theme = "default"
+
+[theme]
+file = "~/.config/yazi/theme.toml"
+

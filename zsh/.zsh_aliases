@@ -1,0 +1,139 @@
+# usbLUKS only with bash
+
+# vault
+
+# Алиас для монтирования зашифрованной папки
+# alias vltDecrypt='cryfs ~/.CryptoVault ~/.mountPoint'
+# Оптимизированая безопасная конфигурация
+alias vltDecrypt='cryfs -o noatime,big_writes ~/.CryptoVault ~/.mountPoint'
+
+# Алиас для размонтирования зашифрованной папки
+alias vltEncrypt='fusermount -u ~/.mountPoint'
+
+# Алиас для использования pass с зашифрованным хранилищем
+export PASSWORD_STORE_DIR=~/.mountPoint/Pass/password-store
+alias vlt='PASSWORD_STORE_DIR=~/.mountPoint/Pass/password-store pass'
+
+alias 2fa='PASSWORD_STORE_DIR=~/.mountPoint/Pass/2fa-store pass'
+
+function totp() {
+    2fa show "$1" | sed -n 's/^otpauth:\/\/totp\/.*secret=\([A-Z2-7]\+\).*/\1/p' | oathtool --totp -b -
+}
+
+function add2fa() {
+    if [ $# -ne 2 ]; then
+        echo "Использование: addotp <ServiceName> <SecretKey>"
+        return 1
+    fi
+    echo "otpauth://totp/$1?secret=$2" | 2fa insert -m -f "$1"
+    echo "TOTP токен для $1 добавлен."
+}
+
+# занести новые пароли в репозиторий
+alias vltSync='(cd ~/.mountPoint/Pass/password-store && git add . && git commit -m "Обновление паролей" || true && git push) && (cd ~/.mountPoint/Pass/2fa-store && git add . && git commit -m "Обновление 2FA" || true && git push)'
+
+# получение обновление
+alias vltPull='(cd ~/.mountPoint/Pass/password-store && git pull) && (cd ~/.mountPoint/Pass/2fa-store && git pull)'
+
+alias vltGpgList='gpg --list-secret-keys --keyid-format LONG --with-fingerprint'
+
+alias gpgChangePass='gpg --passwd'
+
+alias vltBackupKeys='mkdir -p /media/cypherjunkie/fb96f8a7-fb25-4267-9ecd-09ed548470d8/.passBackup/private /media/cypherjunkie/fb96f8a7-fb25-4267-9ecd-09ed548470d8/.passBackup/public && gpg --list-secret-keys --keyid-format LONG | grep sec | while read -r line; do keyid=$(echo $line | cut -d "/" -f 2 | cut -d " " -f 1); uid=$(gpg --list-keys --with-colons $keyid | grep ^uid | cut -d ":" -f 10 | head -n 1); filename="${keyid}_${uid// /_}"; gpg --export-secret-keys --armor $keyid > "/media/cypherjunkie/fb96f8a7-fb25-4267-9ecd-09ed548470d8/.passBackup/private/${filename}_secret.asc" && gpg --export --armor $keyid > "/media/cypherjunkie/fb96f8a7-fb25-4267-9ecd-09ed548470d8/.passBackup/public/${filename}_public.asc"; done'
+
+# .CryptoVault
+alias reinit-vault='/home/cypherjunkie/Документы/MySystemDocs/scripts/reinit-CryptoVault'
+
+alias passGen='strings /dev/urandom | tr -d "\n[:space:]" | fold -w$((24 + $(od -An -N2 -i /dev/urandom) % 4)) | head -n10'
+
+# 9proxy login
+
+alias proxyLogin='source ~/.config/9proxy/.env && sudo systemctl start 9proxyd.service && 9proxy auth -u $PROXY_EMAIL -p $PROXY_PASSWORD'
+
+
+alias minecraft='cd /home/cypherjunkie/Документы/app/TLauncher && java -jar TLauncher.jar'
+
+alias doom='telnet doom.w-graj.net 666'
+
+alias kill9proxy='sudo pkill -f 9proxy'
+
+alias tg='/home/cypherjunkie/Документы/Apps/Telegram/Telegram'
+
+alias bigClock='tty-clock -c -C 5 -f "%A, %d %B"'
+
+alias batteryStatus='acpi -i'
+
+alias personalTg='flatpak run org.telegram.desktop'
+
+   # Настройка fzf-tab для pass
+   zstyle ':fzf-tab:complete:pass::' fzf-preview 'pass show $realpath'
+
+   # Настройка автодополнения для totp
+   _totp() {
+       local -a passwords
+       passwords=($(PASSWORD_STORE_DIR=~/.mountPoint/Pass/2fa-store pass list | sed 's/└── //g; s/├── //g; s/│   //g; s/    //g'))
+       _describe -t passwords 'passwords' passwords
+   }
+   compdef _totp totp
+
+
+# Алиасы для exa
+alias ls='exa'
+alias ll='exa -alh'
+alias tree='exa --tree'
+
+
+# список измененных файлов за 30m/24h/1w. подставлять можно разное
+alias chFiles='fd -t f --changed-within'
+
+# foliate reader
+alias books='flatpak run com.github.johnfactotum.Foliate'
+
+
+# использование памяти
+alias duf='~/Документы/Apps/cli/duf/duf'
+
+# bat
+alias bat="batcat"
+
+# yazi
+alias y="yazi"
+
+# open short
+alias op="open"
+
+# lazygit short
+alias lg="lazygit"
+
+# динамический mac для wifite
+alias dynamicMac='sudo systemctl start macchanger@wlp4s0.service && sudo systemctl status macchanger@wlp4s0.service && macchanger -s wlp4s0'
+
+# статический mac
+alias staticMac='sudo macchanger -p wlp4s0 && sudo systemctl stop macchanger@wlp4s0.service'
+
+
+# режим мониторинга 
+# для прослушивания сетей не позволяет юзать инет
+alias monitorMode='sudo airmon-ng start wlp4s0'
+
+# обычное использование wifi адаптера
+alias normalMode='sudo airmon-ng stop wlp4s0mon' 
+
+
+   # Функция для удаления 5 символов назад
+   delete-five-chars-backward() {
+     local n=${NUMERIC:-5}
+     while (( n-- > 0 )); do
+       zle backward-delete-char
+     done
+   }
+   zle -N delete-five-chars-backward
+
+   # Привязка Ctrl+E к функции удаления 5 символов
+   bindkey '^E' delete-five-chars-backward
+
+
+# рофлы кеки
+alias bruh='fortune | cowsay -f $(cowsay -l | sed "1d" | tr " " "\n" | shuf -n 1) | lolcat'
+
+alias weather='curl -s wttr.in'

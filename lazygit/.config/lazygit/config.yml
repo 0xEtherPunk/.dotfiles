@@ -1,0 +1,39 @@
+gui:
+  theme:
+    activeBorderColor:
+      - '#f9e2af'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    cherryPickedCommitFgColor:
+      - '#f9e2af'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+    searchingActiveBorderColor:
+      - '#f9e2af'
+    authorColors:
+      '*': '#b4befe'
+git:
+  paging:
+    colorArg: always
+    useConfig: true
+    pager: >-
+      TERM=xterm-256color
+      BAT_THEME="Catppuccin Mocha"
+      BAT_STYLE="full"
+      batcat
+      --theme="Catppuccin Mocha"
+      --style=full
+      --color=always
+      --paging=never
+      --language=git
+      --map-syntax ".gitcommit:git"
+      --map-syntax ".gitconfig:git"

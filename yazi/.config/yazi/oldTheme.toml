@@ -1,0 +1,190 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# : Flavor {{{
+
+[flavor]
+use = ""
+
+# : }}}
+
+# : Manager {{{
+
+[manager]
+cwd = { fg = "#89b4fa" }
+
+# Hovered
+hovered         = { fg = "#cdd6f4", bg = "#45475a" }
+preview_hovered = { underline = true }
+
+# Find
+find_keyword  = { fg = "#f9e2af", bold = true, italic = true, underline = true }
+find_position = { fg = "#cba6f7", bg = "reset", bold = true, italic = true }
+
+# Marker
+marker_copied   = { fg = "#a6e3a1",  bg = "#1e1e2e" }
+marker_cut      = { fg = "#f38ba8",  bg = "#1e1e2e" }
+marker_marked   = { fg = "#94e2d5",  bg = "#1e1e2e" }
+marker_selected = { fg = "#f9e2af",  bg = "#1e1e2e" }
+
+# Tab
+tab_active   = { fg = "#1e1e2e", bg = "#cba6f7" }
+tab_inactive = { fg = "#cdd6f4", bg = "#313244" }
+tab_width    = 1
+
+# Count
+count_copied   = { fg = "#1e1e2e", bg = "#a6e3a1" }
+count_cut      = { fg = "#1e1e2e", bg = "#f38ba8" }
+count_selected = { fg = "#1e1e2e", bg = "#f9e2af" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#6c7086" }
+
+# Highlighting
+syntect_theme = ""
+
+# : }}}
+
+# : Status {{{
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#6c7086", bg = "#1e1e2e" }
+
+# Mode
+mode_normal = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+mode_select = { fg = "#1e1e2e", bg = "#f38ba8", bold = true }
+mode_unset  = { fg = "#1e1e2e", bg = "#f38ba8", bold = true }
+
+# Progress
+progress_label  = { bold = true }
+progress_normal = { fg = "#89b4fa", bg = "#1e1e2e" }
+progress_error  = { fg = "#f38ba8", bg = "#1e1e2e" }
+
+# Permissions
+permissions_t = { fg = "#a6e3a1" }
+permissions_r = { fg = "#f9e2af" }
+permissions_w = { fg = "#f38ba8" }
+permissions_x = { fg = "#89b4fa" }
+permissions_s = { fg = "#6c7086" }
+
+# : }}}
+
+# : Input {{{
+
+[input]
+border   = { fg = "#89b4fa" }
+title    = { fg = "#cdd6f4" }
+value    = { fg = "#cdd6f4" }
+selected = { reversed = true }
+
+# : }}}
+
+# : Completion {{{
+
+[completion]
+border   = { fg = "#89b4fa" }
+active   = { bg = "#45475a" }
+inactive = {}
+
+# Icons
+icon_file    = ""
+icon_folder  = ""
+icon_command = ""
+
+# : }}}
+
+# : Tasks {{{
+
+[tasks]
+border  = { fg = "#89b4fa" }
+title   = { fg = "#cdd6f4" }
+hovered = { underline = true }
+
+# : }}}
+
+# : Which {{{
+
+[which]
+mask            = { bg = "#313244" }
+cand            = { fg = "#94e2d5" }
+rest            = { fg = "#6c7086" }
+desc            = { fg = "#cba6f7" }
+separator       = "  "
+separator_style = { fg = "#6c7086" }
+
+# : }}}
+
+# : Help {{{
+
+[help]
+on      = { fg = "#89b4fa" }
+exec    = { fg = "#cba6f7" }
+desc    = { fg = "#cdd6f4" }
+hovered = { bg = "#45475a", bold = true }
+footer  = { fg = "#cdd6f4", bg = "#313244" }
+
+# : }}}
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+	# Images
+	{ mime = "image/*", fg = "#f9e2af" },
+
+	# Videos
+	{ mime = "video/*", fg = "#89b4fa" },
+
+	# Audio
+	{ mime = "audio/*", fg = "#cba6f7" },
+
+	# Archives
+	{ mime = "application/zip", fg = "#f5c2e7" },
+	{ mime = "application/gzip", fg = "#f5c2e7" },
+	{ mime = "application/x-tar", fg = "#f5c2e7" },
+
+	# Documents
+	{ mime = "application/pdf", fg = "#f38ba8" },
+	{ mime = "application/msword", fg = "#89b4fa" },
+	{ mime = "application/vnd.openxmlformats-officedocument.*", fg = "#89b4fa" },
+
+	# Fallback
+	{ name = "*", fg = "#cdd6f4" },
+	{ name = "*/", fg = "#89b4fa" }
+]
+
+[icon]
+
+rules = [
+	# Images
+	{ mime = "image/*", text = "" },
+
+	# Videos
+	{ mime = "video/*", text = "" },
+
+	# Audio
+	{ mime = "audio/*", text = "" },
+
+	# Archives
+	{ mime = "application/zip", text = "" },
+	{ mime = "application/gzip", text = "" },
+	{ mime = "application/x-tar", text = "" },
+
+	# Documents
+	{ mime = "application/pdf", text = "" },
+	{ mime = "application/msword", text = "" },
+	{ mime = "application/vnd.openxmlformats-officedocument.*", text = "" },
+
+	# Fallback
+	{ name = "*", text = "" },
+	{ name = "*/", text = "" }
+]
+
+# : }}}
