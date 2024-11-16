@@ -28,6 +28,17 @@
 
 ## ⚡ Quick Setup
 
+#### Installing Zsh and changing the default shell:
+```
+sudo apt install zsh
+chsh -s $(which zsh)
+```
+
+#### Installation of Zinit (package manager for Zsh):
+```
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+```
+
 #### Install required packages:
 ```
 sudo apt install git zsh neovim stow
@@ -43,5 +54,4 @@ cd ~/.dotfiles
 ```
 stow lazygit neofetch nvim starship wezterm yazi zsh
 ```
-
 
