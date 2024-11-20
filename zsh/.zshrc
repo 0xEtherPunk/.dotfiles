@@ -1,6 +1,9 @@
 # Настройка PATH
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH"
 
+# golang
+export PATH=$PATH:$(go env GOPATH)/bin
+
 export TERM=xterm-256color
 
 # npm

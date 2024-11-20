@@ -86,6 +86,7 @@ alias tree='exa --tree'
 # список измененных файлов за 30m/24h/1w. подставлять можно разное
 alias chFiles='fd -t f --changed-within'
 
+
 # foliate reader
 alias books='flatpak run com.github.johnfactotum.Foliate'
 
