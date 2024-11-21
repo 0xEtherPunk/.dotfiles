@@ -17,12 +17,15 @@ alias vlt='PASSWORD_STORE_DIR=~/.mountPoint/Pass/password-store pass'
 alias 2fa='PASSWORD_STORE_DIR=~/.mountPoint/Pass/2fa-store pass'
 
 function totp() {
-    2fa show "$1" | sed -n 's/^otpauth:\/\/totp\/.*secret=\([A-Z2-7]\+\).*/\1/p' | oathtool --totp -b -
+    local code=$(2fa show "$1" | sed -n 's/^otpauth:\/\/totp\/.*secret=\([A-Z2-7]\+\).*/\1/p' | oathtool --totp -b -)
+    echo "$code"
+    echo -n "$code" | xclip -selection clipboard
+    echo "Code copied to clipboard"
 }
 
 function add2fa() {
     if [ $# -ne 2 ]; then
-        echo "Использование: addotp <ServiceName> <SecretKey>"
+        echo "Использование: add2fa ServiceName SecretKey"
         return 1
     fi
     echo "otpauth://totp/$1?secret=$2" | 2fa insert -m -f "$1"
