@@ -47,7 +47,7 @@ alias vltBackupKeys='mkdir -p /media/cypherjunkie/fb96f8a7-fb25-4267-9ecd-09ed54
 # .CryptoVault
 alias reinit-vault='/home/cypherjunkie/Документы/MySystemDocs/scripts/reinit-CryptoVault'
 
-alias passGen='strings /dev/urandom | tr -d "\n[:space:]" | fold -w$((24 + $(od -An -N2 -i /dev/urandom) % 4)) | head -n10'
+# alias passGen='strings /dev/urandom | tr -d "\n[:space:]" | fold -w$((24 + $(od -An -N2 -i /dev/urandom) % 4)) | head -n10'
 
 # 9proxy login
 
