@@ -54,7 +54,7 @@ alias reinit-vault='/home/cypherjunkie/Документы/MySystemDocs/scripts/r
 alias proxyLogin='source ~/.config/9proxy/.env && sudo systemctl start 9proxyd.service && 9proxy auth -u $PROXY_EMAIL -p $PROXY_PASSWORD'
 
 
-alias minecraft='cd /home/cypherjunkie/Документы/app/TLauncher && java -jar TLauncher.jar'
+alias minecraft='cd /home/cypherjunkie/Документы/Apps/TLauncher && java -jar TLauncher.jar'
 
 alias doom='telnet doom.w-graj.net 666'
 
