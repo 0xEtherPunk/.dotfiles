@@ -49,6 +49,9 @@ alias reinit-vault='/home/cypherjunkie/Документы/MySystemDocs/scripts/r
 
 # alias passGen='strings /dev/urandom | tr -d "\n[:space:]" | fold -w$((24 + $(od -An -N2 -i /dev/urandom) % 4)) | head -n10'
 
+# passGen
+alias pg="passgen"
+
 # 9proxy login
 
 alias proxyLogin='source ~/.config/9proxy/.env && sudo systemctl start 9proxyd.service && 9proxy auth -u $PROXY_EMAIL -p $PROXY_PASSWORD'
