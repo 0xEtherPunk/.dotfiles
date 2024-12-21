@@ -1,0 +1,4 @@
+[KFileDialog Settings]
+Recent Files[$e]=password.gpg,file:$HOME/.mountPoint/Pass/password-store/password.gpg
+Recent URLs[$e]=file:$HOME/.mountPoint/,file:$HOME/.mountPoint/Pass/,file:$HOME/,file:$HOME/.mountPoint/Pass/password-store/
+detailViewIconSize=16

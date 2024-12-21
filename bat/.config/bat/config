@@ -1,0 +1,11 @@
+# Установим тему Catppuccin Mocha (обратите внимание на пробел в названии)
+--theme="Catppuccin Mocha"
+
+# Показывать номера строк, изменения Git и заголовок файла
+ --style="numbers,changes,header"
+
+# Использовать цветной вывод
+--color=always
+
+# Использовать курсив
+--italic-text=always
